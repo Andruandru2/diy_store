@@ -1,0 +1,103 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    
+    <!-- Hero -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">About Grace Crafts</h1>
+        <p class="text-muted">
+            Rooted in India. Inspired by Creativity. Built for the Future.
+        </p>
+    </div>
+
+    <!-- Statement -->
+    <div class="about-section mb-5">
+        <h3 class="fw-bold mb-3">Our Statement</h3>
+
+        <p class="text-muted">
+            The Heart of Our Heritage: A Canvas for Every Indian.
+            We believe the future of India is shaped in the hands of our creators.
+        </p>
+
+        <p class="text-muted">
+            Our DIY kits are <strong>Born in India, Built by Indians</strong> and inspired by our culture.
+            Crafted with locally sourced materials, they honor centuries of Indian artistry.
+        </p>
+    </div>
+
+    <!-- Key Points -->
+    <div class="mb-5">
+        <h5 class="fw-bold mb-3">When you choose our kits, you are:</h5>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Supporting Indian labor</li>
+            <li class="list-group-item">Strengthening our creative economy</li>
+            <li class="list-group-item">Preserving artistic heritage</li>
+            <li class="list-group-item">Becoming a creator of Indian art</li>
+        </ul>
+    </div>
+
+    <!-- Mission -->
+    <div class="about-section mb-5">
+        <h3 class="fw-bold mb-3">Our Mission</h3>
+
+        <p class="text-muted">
+            To reignite Indian creativity by bringing locally crafted DIY kits into every home.
+        </p>
+
+        <ul>
+            <li>Supporting Atmanirbhar Bharat</li>
+            <li>Promoting Vocal for Local</li>
+            <li>Using 100% Indian materials</li>
+            <li>Reviving traditional craftsmanship</li>
+        </ul>
+    </div>
+
+    <!-- Vision -->
+    <div class="about-section mb-5">
+        <h3 class="fw-bold mb-3">Our Vision</h3>
+
+        <ul class="text-muted">
+            <li>Every home becomes a creative studio</li>
+            <li>Every child builds with confidence</li>
+            <li>Indian art thrives in modern homes</li>
+            <li>Creativity shapes the future of India</li>
+        </ul>
+    </div>
+
+    <!-- Map -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3 text-center">Our Location</h3>
+    
+        <div class="about-map">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://maps.google.com/maps?q=13.051314,77.551429&z=15&output=embed" style="border:0;"
+                    allowfullscreen loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    const sections = document.querySelectorAll('.about-section');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    sections.forEach(section => observer.observe(section));
+    </script>
+{% endblock %}

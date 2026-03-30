@@ -1,0 +1,62 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+    
+    <h2 class="mb-4 fw-bold">Checkout</h2>
+
+    <div class="card p-4 shadow-lg border-0">
+        <h4>{{ product.name }}</h4>
+        <h5>
+            Price per set: <span class="fw-bold text-success">₹{{ product.price }}</span>
+        </h5>
+        <div class="alert alert-info">
+            <strong>Note:</strong> After placing the order, please confirm via WhatsApp.
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Address</label>
+                <textarea name="address" class="form-control mb-3" placeholder="Your Address" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label>Quantity</label>
+                <input type="number" name="quantity" id="quantity" class="form-control mb-3" value="1" min="1" onchange="updatePrice()">
+            </div>
+
+            <h3 class="mt-4">
+                Total Price:
+                <span id="totalPrice" class="fw-bold text-danger fs-4">
+                    ₹{{ product.price }}
+                </span>
+            </h3>
+
+            <button class="btn btn-success w-100">Place Order</button>
+        </form>
+    </div>
+</div>
+
+{%endblock%}
+
+
+{% block scripts %}
+<script>
+    let price = parseFloat("{{ product.price }}");
+
+    function updatePrice() {
+        let quantity = parseInt(document.getElementById("quantity").value);
+        let total = price * quantity;
+
+        document.getElementById("totalPrice").innerText = "₹" + total;
+    }
+
+</script>
+{%endblock%}

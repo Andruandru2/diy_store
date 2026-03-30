@@ -1,0 +1,19 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+
+<div class="container text-center mt-5">
+    <h1 class="text-success">Order Received!</h1>
+
+    <p>Your order is saved. Please confirm via WhatsApp.</p>
+
+    <a href="{{ whatsapp_url }}" class="btn btn-success mt-3">
+        Confirm Order on WhatsApp
+    </a>
+
+    <br><br>
+
+    <a href="/" class="btn btn-primary">Back to Home</a>
+</div>
+{% endblock %}

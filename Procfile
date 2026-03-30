@@ -1,0 +1,1 @@
+web: gunicorn diy_store.wsgi
