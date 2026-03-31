@@ -1,62 +1,69 @@
 {% extends 'store/base.html' %}
-
 {% block content %}
 
+<div class="container py-4" style="max-width:620px;">
 
-<div class="container mt-5">
-    
-    <h2 class="mb-4 fw-bold">Checkout</h2>
+    <a onclick="goBack(); return false;" href="#" class="back-btn">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
 
-    <div class="card p-4 shadow-lg border-0">
-        <h4>{{ product.name }}</h4>
-        <h5>
-            Price per set: <span class="fw-bold text-success">₹{{ product.price }}</span>
-        </h5>
-        <div class="alert alert-info">
-            <strong>Note:</strong> After placing the order, please confirm via WhatsApp.
+    <span class="section-label">✦ Checkout</span>
+    <h2 style="font-family:'Nunito',sans-serif; font-weight:900; margin-bottom:24px;">Place Your Order</h2>
+
+    <div class="checkout-card">
+        <div style="background:#fff8f5; border-radius:14px; padding:18px 20px; margin-bottom:24px; border:1.5px solid #ffe5d9;">
+            <h5 style="font-family:'Nunito',sans-serif; font-weight:800; margin-bottom:4px;">{{ product.name }}</h5>
+            <div style="font-family:'Nunito',sans-serif; font-size:1.4rem; font-weight:900; color:#ff6b35;">
+                ₹{{ product.price }}/Set
+            </div>
         </div>
+
+        <div style="background:#e8f4fd; border-radius:12px; padding:14px 18px; margin-bottom:24px; font-size:0.88rem; color:#0c5a8e;">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            After placing the order, please confirm via WhatsApp.
+        </div>
+
         <form method="POST">
             {% csrf_token %}
+
             <div class="mb-3">
-                <label>Name</label>
-                <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
+                <label style="font-weight:600; font-size:0.88rem; color:#555; margin-bottom:6px; display:block;">Your Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
             </div>
 
             <div class="mb-3">
-                <label>Address</label>
-                <textarea name="address" class="form-control mb-3" placeholder="Your Address" required></textarea>
+                <label style="font-weight:600; font-size:0.88rem; color:#555; margin-bottom:6px; display:block;">Delivery Address</label>
+                <textarea name="address" class="form-control" placeholder="Enter your full address" rows="3" required></textarea>
             </div>
 
-            <div class="mb-3">
-                <label>Quantity</label>
-                <input type="number" name="quantity" id="quantity" class="form-control mb-3" value="1" min="1" onchange="updatePrice()">
+            <div class="mb-4">
+                <label style="font-weight:600; font-size:0.88rem; color:#555; margin-bottom:6px; display:block;">Quantity</label>
+                <input type="number" name="quantity" id="quantity" class="form-control"
+                       value="1" min="1" onchange="updatePrice()" style="max-width:140px;">
             </div>
 
-            <h3 class="mt-4">
-                Total Price:
-                <span id="totalPrice" class="fw-bold text-danger fs-4">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; padding:18px 20px; background:#f8f8f8; border-radius:14px;">
+                <span style="font-weight:600; color:#555;">Total Price</span>
+                <span id="totalPrice" style="font-family:'Nunito',sans-serif; font-size:1.8rem; font-weight:900; color:#ff6b35;">
                     ₹{{ product.price }}
                 </span>
-            </h3>
+            </div>
 
-            <button class="btn btn-success w-100">Place Order</button>
+            <button type="submit" class="btn-theme w-100 text-center" style="border:none; cursor:pointer; display:block; border-radius:14px; padding:14px;">
+                Place Order →
+            </button>
         </form>
     </div>
 </div>
 
-{%endblock%}
-
+{% endblock %}
 
 {% block scripts %}
 <script>
     let price = parseFloat("{{ product.price }}");
-
     function updatePrice() {
-        let quantity = parseInt(document.getElementById("quantity").value);
-        let total = price * quantity;
-
-        document.getElementById("totalPrice").innerText = "₹" + total;
+        let qty = parseInt(document.getElementById('quantity').value) || 1;
+        document.getElementById('totalPrice').innerText = '₹' + (price * qty);
     }
-
 </script>
-{%endblock%}
+{% endblock %}

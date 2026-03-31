@@ -1,54 +1,48 @@
 {% extends 'store/base.html' %}
-
 {% block content %}
 
-<div class="container py-5">
+<div class="container py-4">
 
-    
-    <!-- Hero -->
+    <!-- HERO -->
     <div class="text-center mb-5">
-        <h1 class="fw-bold">About Grace Crafts</h1>
-        <p class="text-muted">
+        <span class="section-label d-block text-center">✦ Our Story</span>
+        <h1 style="font-family:'Nunito',sans-serif; font-weight:900; font-size:2.4rem;">About Grace Crafts</h1>
+        <p style="color:#999; max-width:520px; margin:0 auto;">
             Rooted in India. Inspired by Creativity. Built for the Future.
         </p>
     </div>
 
-    <!-- Statement -->
-    <div class="about-section mb-5">
-        <h3 class="fw-bold mb-3">Our Statement</h3>
-
-        <p class="text-muted">
+    <!-- STATEMENT -->
+    <div class="about-section">
+        <h3>Our Statement</h3>
+        <p style="color:#666; line-height:1.7;">
             The Heart of Our Heritage: A Canvas for Every Indian.
             We believe the future of India is shaped in the hands of our creators.
         </p>
-
-        <p class="text-muted">
-            Our DIY kits are <strong>Born in India, Built by Indians</strong> and inspired by our culture.
+        <p style="color:#666; line-height:1.7;">
+            Our DIY kits are <strong style="color:#ff6b35;">Born in India, Built by Indians</strong> and inspired by our culture.
             Crafted with locally sourced materials, they honor centuries of Indian artistry.
         </p>
     </div>
 
-    <!-- Key Points -->
-    <div class="mb-5">
-        <h5 class="fw-bold mb-3">When you choose our kits, you are:</h5>
-
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Supporting Indian labor</li>
-            <li class="list-group-item">Strengthening our creative economy</li>
-            <li class="list-group-item">Preserving artistic heritage</li>
-            <li class="list-group-item">Becoming a creator of Indian art</li>
+    <!-- KEY POINTS -->
+    <div class="about-section">
+        <h3>When You Choose Our Kits, You Are:</h3>
+        <ul style="color:#666; line-height:2;">
+            <li>Supporting Indian labor</li>
+            <li>Strengthening our creative economy</li>
+            <li>Preserving artistic heritage</li>
+            <li>Becoming a creator of Indian art</li>
         </ul>
     </div>
 
-    <!-- Mission -->
-    <div class="about-section mb-5">
-        <h3 class="fw-bold mb-3">Our Mission</h3>
-
-        <p class="text-muted">
+    <!-- MISSION -->
+    <div class="about-section">
+        <h3>Our Mission</h3>
+        <p style="color:#666; line-height:1.7;">
             To reignite Indian creativity by bringing locally crafted DIY kits into every home.
         </p>
-
-        <ul>
+        <ul style="color:#666; line-height:2;">
             <li>Supporting Atmanirbhar Bharat</li>
             <li>Promoting Vocal for Local</li>
             <li>Using 100% Indian materials</li>
@@ -56,11 +50,10 @@
         </ul>
     </div>
 
-    <!-- Vision -->
-    <div class="about-section mb-5">
-        <h3 class="fw-bold mb-3">Our Vision</h3>
-
-        <ul class="text-muted">
+    <!-- VISION -->
+    <div class="about-section">
+        <h3>Our Vision</h3>
+        <ul style="color:#666; line-height:2;">
             <li>Every home becomes a creative studio</li>
             <li>Every child builds with confidence</li>
             <li>Indian art thrives in modern homes</li>
@@ -68,15 +61,13 @@
         </ul>
     </div>
 
-    <!-- Map -->
+    <!-- MAP -->
     <div class="mb-5">
-        <h3 class="fw-bold mb-3 text-center">Our Location</h3>
-    
+        <h3 style="font-family:'Nunito',sans-serif; font-weight:900; text-align:center; margin-bottom:20px;">Our Location</h3>
         <div class="about-map">
             <div class="ratio ratio-16x9">
-                <iframe src="https://maps.google.com/maps?q=13.051314,77.551429&z=15&output=embed" style="border:0;"
-                    allowfullscreen loading="lazy">
-                </iframe>
+                <iframe src="https://maps.google.com/maps?q=13.051314,77.551429&z=15&output=embed"
+                        style="border:0;" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -86,18 +77,16 @@
 {% endblock %}
 
 {% block scripts %}
-    <script>
+<script>
     const sections = document.querySelectorAll('.about-section');
-
-    const observer = new IntersectionObserver(entries => {
+    const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('show');
+                obs.unobserve(entry.target);
             }
         });
-    });
-
-    sections.forEach(section => observer.observe(section));
-    </script>
+    }, { threshold: 0.1 });
+    sections.forEach(s => obs.observe(s));
+</script>
 {% endblock %}

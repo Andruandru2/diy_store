@@ -1,84 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DIY Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Crafts — DIY Kits for Kids</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
 </head>
 <body>
-   
-    <div class="page-wrapper">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid px-2">
-    
-                <!-- Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="/">
-                    <img src="{% static 'images/logo.jpg' %}" width="40" height="40" class="me-2">
-                    <span class="fw-bold">Grace Crafts</span>
-                </a>
-    
-                <!-- Hamburger (mobile only) -->
-                <button class="navbar-toggler d-lg-none" type="button" onclick="toggleMenu()">
-                    ☰
-                </button>
-    
-                <!-- Desktop Menu -->
-                <div class="d-none d-lg-flex">
-                    <ul class="navbar-nav ms-4 d-flex flex-row gap-3">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'all_products' %}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'about' %}">About</a>
-                        </li>
-                    </ul>
-                </div>
-    
+
+<div class="page-wrapper">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <img src="{% static 'images/logo.jpg' %}" width="38" height="38">
+                <span>Grace Crafts</span>
+            </a>
+
+            <!-- Hamburger (mobile) -->
+            <button class="btn d-lg-none p-1" style="color:white; font-size:1.5rem;" onclick="toggleMenu()">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Desktop links -->
+            <div class="d-none d-lg-flex ms-auto">
+                <ul class="navbar-nav d-flex flex-row gap-2">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'all_products' %}">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                </ul>
             </div>
-        </nav>
-    
-        <!-- MOBILE SIDE MENU -->
-        <div id="sideMenu" class="side-menu">
-            <a href="/" onclick="toggleMenu()">Home</a>
-            <a href="{% url 'all_products' %}" onclick="toggleMenu()">Products</a>
-            <a href="{% url 'about' %}" onclick="toggleMenu()">About</a>
+
         </div>
-    
-        <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
-    
-        <!-- Page Content -->
-        <div class="main-wrapper pt-2 pb-4">
-            {% block content %}
-            {% endblock %}
-        </div>
-    
-        <!-- Footer -->
-        <footer class="bg-dark text-white text-center p-3 mt-5">
-            <p class="mb-0">©2026 Grace Crafts | Awaken the Creativeness</p>
-        </footer>
+    </nav>
+
+    <!-- MOBILE SIDE MENU -->
+    <div id="sideMenu" class="side-menu">
+        <a href="/" onclick="toggleMenu()"><i class="bi bi-house-fill"></i> Home</a>
+        <a href="{% url 'all_products' %}" onclick="toggleMenu()"><i class="bi bi-grid-fill"></i> Products</a>
+        <a href="{% url 'about' %}" onclick="toggleMenu()"><i class="bi bi-info-circle-fill"></i> About</a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        function toggleMenu() {
-            document.getElementById("sideMenu").classList.toggle("active");
-            document.getElementById("overlay").classList.toggle("active");
-        }
-        function goBack() {
-            window.history.back();
-        }
-    </script>
-    {% block scripts %}
-    {% endblock %}
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+    <!-- CONTENT -->
+    <div class="main-wrapper pt-3 pb-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Grace Crafts &nbsp;·&nbsp; Awaken the Creativeness</p>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="{% url 'all_products' %}">Products</a>
+            <a href="{% url 'about' %}">About</a>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleMenu() {
+        document.getElementById('sideMenu').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+    function goBack() { window.history.back(); }
+</script>
+{% block scripts %}{% endblock %}
 
 </body>
 </html>

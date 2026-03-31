@@ -1,19 +1,27 @@
 {% extends 'store/base.html' %}
-
 {% block content %}
 
+<div class="container text-center py-5" style="max-width:500px;">
 
-<div class="container text-center mt-5">
-    <h1 class="text-success">Order Received!</h1>
+    <div style="width:80px; height:80px; background:rgba(255,107,53,0.12); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:36px;">
+        🎉
+    </div>
 
-    <p>Your order is saved. Please confirm via WhatsApp.</p>
+    <span class="section-label d-block text-center">✦ Success</span>
+    <h1 style="font-family:'Nunito',sans-serif; font-weight:900; color:#1a1a2e; margin-bottom:12px;">
+        Order Received!
+    </h1>
+    <p style="color:#999; margin-bottom:32px;">
+        Your order has been saved. Please confirm via WhatsApp so we can process it right away.
+    </p>
 
-    <a href="{{ whatsapp_url }}" class="btn btn-success mt-3">
-        Confirm Order on WhatsApp
+    <a href="{{ whatsapp_url }}" class="btn-theme d-block mb-3" style="border-radius:14px; padding:14px;">
+        <i class="bi bi-whatsapp me-2"></i> Confirm on WhatsApp
     </a>
 
-    <br><br>
-
-    <a href="/" class="btn btn-primary">Back to Home</a>
+    <a href="/" style="display:inline-block; color:#999; font-size:0.88rem; margin-top:8px; text-decoration:none;">
+        ← Back to Home
+    </a>
 </div>
+
 {% endblock %}
