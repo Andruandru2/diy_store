@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 STATUS_CHOICES = [
     ('pending', 'Pending'),
@@ -7,16 +8,15 @@ STATUS_CHOICES = [
     ('delivered', 'Delivered'),
 ]
 
-# Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.FloatField()
-    image = models.ImageField(upload_to='products/')
+    image = CloudinaryField('image', blank=True, null=True)  # ✅ Changed
 
     def __str__(self):
         return self.name
-    
+
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -31,4 +31,4 @@ class Order(models.Model):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='products/')
+    image = CloudinaryField('image', blank=True, null=True)  # ✅ Changed
